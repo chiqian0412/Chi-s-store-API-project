@@ -5,22 +5,25 @@ const React = require('react');
           const { products } = this.props;
           return (
                   <div>
-                      <h1>Chi's Makeup Store</h1>
+                      <h1>Chi Store</h1>
                       <nav>
-                        <a href="/products/new">Create a New Products</a>
+                        <a href="/product/new">Create a New Products</a>
                       </nav>
                       <ul>
                           {products.map((product, i) => {
                               return (
-                                  <li>
+                                  <div>
+                                      <img src={product.img}></img>
+                                      <li>
                                       The{' '}
-                                      <a href={`/products/${i}`}>
+                                      <a href={`/product/${i}`}>
                                           {product.name}
                                       </a>{' '}
-                                      is {product.price} <br></br>
-                                      {product.qty}
+                                      is {product.price} dollar<br></br>
+                                      quantity is {product.qty}
                                       <br />
-                                  </li>
+                                      </li>
+                                  </div>
                               );
                           })}
                       </ul>

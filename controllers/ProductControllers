@@ -5,14 +5,15 @@ const Product = require("../models/productmodel.js");
 exports.getAllProducts = async(req,res) => {
   try{
     //retrieve all the products from our database.
-    const products = await Product.find();
+    // const products = await Product.find();
     // send response.
-      res.status(200).json({
-          suatus: "success",
-          data:{
-              products: products,
-          }
-      })
+       res.render('index',{products: Product});
+      // res.status(200).json({
+      //     suatus: "success",
+      //     data:{
+      //         products: products,
+      //     }
+      // })
   }catch(error){
     res.status(500).json({
       status: "error",
@@ -20,6 +21,11 @@ exports.getAllProducts = async(req,res) => {
     })
   }  
 }
+
+exports.createProductForm = (req,res) =>{
+  res.render('form');
+}
+
 // This controller is to create a new product
 exports.createProduct = async(req, res) => {
   try{
