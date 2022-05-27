@@ -18,5 +18,8 @@ router
 .get(productControllers.getSingleProduct)
 .patch(productControllers.updateProduct)
 .delete(productControllers.deleteProduct);
+router
+.route("/:id/edit")
+.get(productControllers.editProduct);
 
 module.exports = router;

@@ -5,15 +5,9 @@ const Product = require("../models/productmodel.js");
 exports.getAllProducts = async(req,res) => {
   try{
     //retrieve all the products from our database.
-    // const products = await Product.find();
+    const products = await Product.find();
     // send response.
-       res.render('index',{products: Product});
-      // res.status(200).json({
-      //     suatus: "success",
-      //     data:{
-      //         products: products,
-      //     }
-      // })
+       res.render('index',{products: products});
   }catch(error){
     res.status(500).json({
       status: "error",
@@ -22,8 +16,26 @@ exports.getAllProducts = async(req,res) => {
   }  
 }
 
-exports.createProductForm = (req,res) =>{
-  res.render('form');
+exports.createProductForm = async (req,res) =>{
+  const dbFilter = (id) => ({ firstName: id });
+  try{
+    let createProductInfo = await Product.findOne(dbFilter(req.params.id));
+    res.render('form',{product: createProductInfo});
+  }catch(error){
+    res.status(500).json({
+      status: "error",
+      message: error,
+    })
+  }   
+}
+const dbFilter = (id) => ({ firstName: id });
+const getUpdateLearner = async (req, resp) => {
+    try {
+        let result = await Learner.findOne(dbFilter(req.params.id));
+        resp.render('updateLearner', { learner: result });
+    } catch (e) {
+        console.error('Error: ', e);
+    }
 }
 
 // This controller is to create a new product
@@ -46,13 +58,14 @@ exports.createProduct = async(req, res) => {
 // This controller is to get a single product
   exports.getSingleProduct = async(req, res) => {
     try{
-      const product = await Product.findById(req.params.id)
-      res.status(200).json({
-          status: "success",
-          data: {
-          product: product,
-          },
-      });
+      // const product = await Product.findByID(req.params.id)
+      res.render('view',{product: Product[req.params.id]});
+      // res.status(200).json({
+      //     status: "success",
+      //     data: {
+      //     product: product,
+      //     },
+      // });
     }catch(error){
       res.status(500).json({
         status: "error",
@@ -60,6 +73,23 @@ exports.createProduct = async(req, res) => {
       })
     }
   }  
+  exports.editProduct = async(req, res) => {
+    try{
+      res.render('editForm',{products: Product[req.params.id]});
+      // const updatedProduct = await Product.findByIdAndUpdate(req.params.id,req.body,{new: true});
+      // res.status(201).json({
+      //     status: "success",
+      //     data: {
+      //     updatedProduct: updatedProduct,
+      //     },
+      // });
+    }catch(error){
+      res.status(500).json({
+        status: "error",
+        message: error,
+      })
+    }
+  }
 // This controller is to update product
   exports.updateProduct = async(req, res) => {
     try{
