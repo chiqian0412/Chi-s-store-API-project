@@ -16,8 +16,10 @@ router
 router
 .route("/:id")
 .get(productControllers.getSingleProduct)
-.patch(productControllers.updateProduct)
-.delete(productControllers.deleteProduct);
+.post(productControllers.updateProduct)
+router
+.route("/:id/delete")
+.get(productControllers.deleteProduct);
 router
 .route("/:id/edit")
 .get(productControllers.editProduct);

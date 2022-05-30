@@ -1,5 +1,5 @@
 const Product = require("../models/productmodel.js");
-
+const urlName = (id) => ({ name: id });
 // Refactor route controllers
 // This controller is to get all products
 exports.getAllProducts = async(req,res) => {
@@ -17,10 +17,10 @@ exports.getAllProducts = async(req,res) => {
 }
 
 exports.createProductForm = async (req,res) =>{
-  const dbFilter = (id) => ({ firstName: id });
+  
   try{
-    let createProductInfo = await Product.findOne(dbFilter(req.params.id));
-    res.render('form',{product: createProductInfo});
+    
+    res.render('form'); 
   }catch(error){
     res.status(500).json({
       status: "error",
@@ -28,26 +28,14 @@ exports.createProductForm = async (req,res) =>{
     })
   }   
 }
-const dbFilter = (id) => ({ firstName: id });
-const getUpdateLearner = async (req, resp) => {
-    try {
-        let result = await Learner.findOne(dbFilter(req.params.id));
-        resp.render('updateLearner', { learner: result });
-    } catch (e) {
-        console.error('Error: ', e);
-    }
-}
 
 // This controller is to create a new product
 exports.createProduct = async(req, res) => {
   try{
-    const newProduct =await product.create(req.body);
-    res.status(201).json({
-      status: "success",
-      data: {
-        newProduct: newProduct,
-      },
-    });
+    // const newProduct =await product.create(req.body);
+    let createProductInfo = await Product.create(req.body);
+    // await Learner.findOneAndUpdate(urlName(req.params.id), req.body);
+    res.redirect('/product');
   }catch(error){
     res.status(500).json({
       status: "error",
@@ -58,14 +46,8 @@ exports.createProduct = async(req, res) => {
 // This controller is to get a single product
   exports.getSingleProduct = async(req, res) => {
     try{
-      // const product = await Product.findByID(req.params.id)
-      res.render('view',{product: Product[req.params.id]});
-      // res.status(200).json({
-      //     status: "success",
-      //     data: {
-      //     product: product,
-      //     },
-      // });
+      const product = await Product.findOne(urlName(req.params.id))
+      res.render('view',{product: product});
     }catch(error){
       res.status(500).json({
         status: "error",
@@ -75,14 +57,8 @@ exports.createProduct = async(req, res) => {
   }  
   exports.editProduct = async(req, res) => {
     try{
-      res.render('editForm',{products: Product[req.params.id]});
-      // const updatedProduct = await Product.findByIdAndUpdate(req.params.id,req.body,{new: true});
-      // res.status(201).json({
-      //     status: "success",
-      //     data: {
-      //     updatedProduct: updatedProduct,
-      //     },
-      // });
+      const getProduct = await Product.findOne(urlName(req.params.id))
+      res.render('editForm',{product: getProduct});
     }catch(error){
       res.status(500).json({
         status: "error",
@@ -93,13 +69,8 @@ exports.createProduct = async(req, res) => {
 // This controller is to update product
   exports.updateProduct = async(req, res) => {
     try{
-      const updatedProduct = await Product.findByIdAndUpdate(req.params.id,req.body,{new: true});
-      res.status(201).json({
-          status: "success",
-          data: {
-          updatedProduct: updatedProduct,
-          },
-      });
+      await Product.findOneAndUpdate(urlName(req.params.id),req.body);
+      res.redirect(`/product/${urlName(req.params.id)}`);
     }catch(error){
       res.status(500).json({
         status: "error",
@@ -110,11 +81,8 @@ exports.createProduct = async(req, res) => {
 // This controller is to delete product
   exports.deleteProduct = async(req, res) => {
     try{
-      await Product.findByIdAndDelete(req.params.id);
-      res.status(204).json({
-          status: "success",
-          data: {},
-      });
+      await Product.remove(urlName(req.params.id));
+      res.redirect('/product');
     }catch(error){
       res.status(500).json({
         status: "error",

@@ -12,18 +12,24 @@ const React = require('react');
                       <ul>
                           {products.map((product, i) => {
                               return (
+                                <div>  
                                   <div>
                                       <img src={product.img}></img>
                                       <li>
                                       The{' '}
-                                      <a href={`/product/${i}`}>
                                           {product.name}
-                                      </a>{' '}
+                                      {' '}
                                       is {product.price} dollar<br></br>
                                       quantity is {product.qty}
                                       <br />
                                       </li>
                                   </div>
+                                  <div>
+                                      <li><a href={`/product/${product.name}`}>Detail</a></li>
+                                      {/* <li><a href={`/product/${product.name}/edit`}>Edit</a></li>
+                                      <li><a href={`/product/${i}/delete`}>Delete</a></li> */}
+                                  </div>
+                                </div>  
                               );
                           })}
                       </ul>
@@ -32,3 +38,4 @@ const React = require('react');
       }
     }
     module.exports = Index;
+    // export default Index;
