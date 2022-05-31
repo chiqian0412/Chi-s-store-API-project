@@ -58,7 +58,7 @@ exports.createProduct = async(req, res) => {
   exports.editProduct = async(req, res) => {
     try{
       const getProduct = await Product.findOne(urlName(req.params.id))
-      // console.log(getProduct);
+
       res.render('editForm',{product: getProduct});
     }catch(error){
       res.status(500).json({
@@ -70,8 +70,10 @@ exports.createProduct = async(req, res) => {
 // This controller is to update product
   exports.updateProduct = async(req, res) => {
     try{
-      await Product.findOneAndUpdate(urlName(req.params.id),req.body);
-      res.redirect(`/product/${urlName(req.params.id)}`);
+      const productId = urlName(req.params.id);
+      const body = req.body;
+      await Product.findOneAndUpdate(productId,body); 
+      res.redirect(`/product/${body.name}`);
     }catch(error){
       res.status(500).json({
         status: "error",

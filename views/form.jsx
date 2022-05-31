@@ -24,8 +24,8 @@ const inputStyle = {
                 <input style={inputStyle} type="text"   name="name"         placeholder='Product Name'  />
                 <input style={inputStyle} type="text"   name="description"  placeholder='Description' />
                 <input style={inputStyle} type="text"   name="img"        placeholder='Image link' />
-                <input style={inputStyle} type="number" name="price"        placeholder='Price' />
-                <input style={inputStyle} type="number" name="qty"     placeholder='Quantity' />
+                <input style={inputStyle} type="number" step="0.01"       name="price"        placeholder='Price' />
+                <input style={inputStyle} type="number" step="0.01"       name="qty"     placeholder='Quantity' />
                 <input style={inputStyle} type="submit" defaultValue="Create product" />
                 </form>
             </div>

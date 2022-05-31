@@ -1,7 +1,5 @@
 const express = require('express');
 const productControllers = require('../controllers/ProductControllers');
-// require('dotenv').config();
-// const mongoose = require('mongoose');
 // Create an express router
 const router = express.Router();
 
@@ -16,12 +14,12 @@ router
 router
 .route("/:id")
 .get(productControllers.getSingleProduct)
-.put(productControllers.updateProduct)
 router
-.route("/:id/delete")
+.route("/delete/:id")
 .get(productControllers.deleteProduct);
 router
-.route("/:id/edit")
-.get(productControllers.editProduct);
+.route("/edit/:id")
+.get(productControllers.editProduct)
+.post(productControllers.updateProduct);
 
 module.exports = router;
