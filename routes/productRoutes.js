@@ -9,14 +9,14 @@ const router = express.Router();
 router
 .route("/")
 .get(productControllers.getAllProducts)
-.post(productControllers.createProduct);
+.post(productControllers.createProduct)
 router
 .route("/new")
 .get(productControllers.createProductForm);
 router
 .route("/:id")
 .get(productControllers.getSingleProduct)
-.post(productControllers.updateProduct)
+.put(productControllers.updateProduct)
 router
 .route("/:id/delete")
 .get(productControllers.deleteProduct);

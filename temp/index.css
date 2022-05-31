@@ -1,0 +1,46 @@
+.storePage{
+    background-color: lemonchiffon;
+    height: 300vh;
+}
+.logo{
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJ9uYhL-JwK13AqhufH7xQGZz0ZsIup1EgDg&usqp=CAU');
+    background-size: cover;
+    border: solid palevioletred 10px;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    font-size: 100px;
+    align-self: center;
+}
+.nav{
+    background-color: lightseagreen;
+    display: flex;
+    justify-content: space-between;
+    height:150px;
+    
+}
+#head{
+    font-size: 70px;
+}
+.products{
+    display: grid;
+    gap:10px;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: space-around;
+    padding:20px;
+}
+.singleProduct{
+    background-color:lightblue;
+    border-radius: 10px;
+    width:30vw;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+img{
+    width: 25vw;
+    height: 350px;
+    border-radius: 20px;
+    padding: 10px;
+}

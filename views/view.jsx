@@ -13,7 +13,7 @@ const headStyle = {backgroundColor:'green',
                     <ul>
                                 <div>  
                                    <div>
-                                    <img src={product.img}></img>
+                                    {/* <img src={product.img}></img> */}
                                 </div>
                                 <div>
                                     {/* <li> */}

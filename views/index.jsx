@@ -12,24 +12,13 @@ const React = require('react');
                       <ul>
                           {products.map((product, i) => {
                               return (
-                                <div>  
-                                  <div>
+                                  
+                                  <div key = {i}>
                                       <img src={product.img}></img>
-                                      <li>
-                                      The{' '}
-                                          {product.name}
-                                      {' '}
-                                      is {product.price} dollar<br></br>
-                                      quantity is {product.qty}
-                                      <br />
-                                      </li>
+                                      <h2>Price: {product.price}</h2>
+                                      <h3><a href={`/product/${product.name}`}>{product.name}</a></h3> 
                                   </div>
-                                  <div>
-                                      <li><a href={`/product/${product.name}`}>Detail</a></li>
-                                      {/* <li><a href={`/product/${product.name}/edit`}>Edit</a></li>
-                                      <li><a href={`/product/${i}/delete`}>Delete</a></li> */}
-                                  </div>
-                                </div>  
+                               
                               );
                           })}
                       </ul>
