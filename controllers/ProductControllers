@@ -58,6 +58,7 @@ exports.createProduct = async(req, res) => {
   exports.editProduct = async(req, res) => {
     try{
       const getProduct = await Product.findOne(urlName(req.params.id))
+      // console.log(getProduct);
       res.render('editForm',{product: getProduct});
     }catch(error){
       res.status(500).json({

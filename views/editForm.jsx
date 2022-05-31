@@ -18,16 +18,17 @@ const inputStyle = {
     class editForm extends React.Component {
       render() {
           const product = this.props.product;
+          console.log(product)
           return (
                   <div>
                       <h1 style={headStyle}>Edit Product</h1>
                       <div>
-                <form style={formStyle} action={`/product/${product.name}`} method='POST'>
+                <form style={formStyle} action={`/product/${product.name}`} method='Put'>
                 <input style={inputStyle} type="text"   name="name"      placeholder='Name' defaultValue={product.name} />
-                <input style={inputStyle} type="text"   name="description"       placeholder='Description' defaultValue={product.description} />
+                <input style={inputStyle} type="text"   name="description" placeholder='Description' defaultValue={product.description} />
                 <input style={inputStyle} type="text"   name="img"       placeholder='Image link' defaultValue={product.img} />
                 <input style={inputStyle} type="number" name="price" placeholder='Price' defaultValue={product.price} />
-                <input style={inputStyle} type="number" name="qty"            placeholder='Quantity' defaultValue={product.qty} />
+                <input style={inputStyle} type="number" name="qty"   placeholder='Quantity' defaultValue={product.qty} />
                 <input style={inputStyle} type="submit" defaultValue="Edit product" />
                 </form>
             </div>
